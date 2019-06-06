@@ -5,11 +5,11 @@
 let canvas
 let ctx
 
-let currElement = 'arc'
+// let currElement = 'arc'
 
-function changeEl(elName) {
-    currElement = elName
-}
+// function changeEl(elName) {
+//     currElement = elName
+// }
 
 function init() {
     canvas = document.querySelector('#my-canvas');
@@ -33,30 +33,28 @@ function init() {
 function draw(ev) {
     ctx.save();
     drawImg();
-    const {offsetX, offsetY} = ev
-    switch (currElement) {
-        case 'triangle':
-            drawTriangle(offsetX, offsetY)
-            break;
-        case 'rect':
-            drawRect(offsetX, offsetY)
-            break;
-        case 'text':
-            drawText('test',offsetX, offsetY)
-            break;
-        case 'arc':
-            drawArc(offsetX, offsetY)
-            break;
-    }
+    // const { offsetX, offsetY } = ev
+    // switch (currElement) {
+    //     case 'triangle':
+    //         drawTriangle(offsetX, offsetY)
+    //         break;
+    //     case 'rect':
+    //         drawRect(offsetX, offsetY)
+    //         break;
+    //     case 'text':
+    //         drawText('test', offsetX, offsetY)
+    //         break;
+    //     case 'arc':
+    //         drawArc(offsetX, offsetY)
+    //         break;
+    // }
     ctx.restore()
 }
 
-
-
-
-
-function drawImg() {
-    const img = document.querySelector('img');
-    ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
-
+function ondrawImg(img) {
+    drawImg(img);
 }
+
+
+
+

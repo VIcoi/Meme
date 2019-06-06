@@ -14,8 +14,14 @@
 </head>
 <body onload="init()">
     <h1>Meme Generator</h1>
-    <canvas onclick="checkCeleb(event)" id="my-canvas" width="500" height="500" aria-placeholder="pick a pic">
+    <canvas onclick="checkCeleb(event)" id="my-canvas" width="500" height="500">
     </canvas>
+    <div class="gallery">
+
+        <img onclick="ondrawImg(this)" src="/img/003.jpg" alt="">
+    </div>
+
+    <script src="/js/service.js"></script>
     <script src="/js/controller.js"></script>
 </body>
 </html>
