@@ -41,16 +41,16 @@ function draw(ev) {
     drawImg();
     // const { offsetX, offsetY } = ev
     // switch (currElement) {
-        //     case 'triangle':
-        //         drawTriangle(offsetX, offsetY)
-        //         break;
-        //     case 'rect':
-        //         drawRect(offsetX, offsetY)
-        //         break;
-        //     case 'text':
-        //         drawText('test', offsetX, offsetY)
-        //         break;
-        //     case 'arc':
+    //     case 'triangle':
+    //         drawTriangle(offsetX, offsetY)
+    //         break;
+    //     case 'rect':
+    //         drawRect(offsetX, offsetY)
+    //         break;
+    //     case 'text':
+    //         drawText('test', offsetX, offsetY)
+    //         break;
+    //     case 'arc':
     //         drawArc(offsetX, offsetY)
     //         break;
     // }
@@ -61,34 +61,47 @@ function ondrawImg(img) {
     drawImg(img);
 }
 
-function onTextSubmit() {
+function inputChange() {
     if (gImg) {
-        const txt = document.querySelector('.userText').value;
-        const offsetX = canvas.width / 2;
-        const offsetY = 100;
-        ctx.fillStyle = 'white';
-        ctx.strokeStyle = 'blue';
-        ctx.font = "27px Arial";
-        ctx.fillText(txt, x, y);
-        ctx.strokeText(txt, offsetX, offsetY);
+        drawImg(gImg);
+        var elColor = document.querySelector('.color').value;
+        if (document.querySelector('.userText').value !== '') {
+            const txt = document.querySelector('.userText').value;
+            const offsetX = canvas.width / 4;
+            const offsetY = 50;
+            ctx.fillStyle = elColor;
+            ctx.strokeStyle = 'black';
+            ctx.font = "27px Arial";
+            ctx.fillText(txt, offsetX, offsetY);
+            ctx.strokeText(txt, offsetX, offsetY);
+        }
+        /////
+        if (document.querySelector('.userText2').value !== '') {
+            const txt = document.querySelector('.userText2').value;
+            const offsetX2 = canvas.width / 4;
+            const offsetY2 = canvas.height - 50;
+            ctx.fillStyle = elColor;
+            ctx.strokeStyle = 'black';
+            ctx.font = "27px Arial";
+            ctx.fillText(txt, offsetX2, offsetY2);
+            ctx.strokeText(txt, offsetX2, offsetY2);
+        }
     } else {
         alert('Please select piture')
         document.querySelector('.userText').value = '';
     }
-    
 }
 
-function onInputChange() {
-    
-    const txt = document.querySelector('.userText').value;
-    const offsetX = canvas.width / 2;
-    const offsetY = 100;
-    inputChange(txt,offsetX,offsetY)
-}
+
 
 
 
 function renderGallery() {
     //get all pics and render with on click to the class .gallery
     // like --  <img onclick="ondrawImg(this)" src="/img/003.jpg" alt="">
+}
+
+
+function onFileInputChange(ev) {
+    handleImageFromInput(ev, drawImg)
 }

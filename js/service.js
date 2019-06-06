@@ -16,17 +16,17 @@ function drawImg(img) {
     ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
 }
 
-function inputChange(txt, x, y) {
-    if (gImg) {
-        drawImg(gImg);
-        ctx.fillStyle = 'orange';
-        ctx.strokeStyle = 'black';
-        ctx.font = "27px Arial";
-        ctx.fillText(txt, x, y);
-        ctx.strokeText(txt, x, y);
-    } else {
-        alert('Please select piture')
-        document.querySelector('.userText').value = '';
+
+function handleImageFromInput(ev, onImageReady) {
+    document.querySelector('.share-container').innerHTML = ''
+    var reader = new FileReader();
+
+    reader.onload = function (event) {
+        var img = new Image();
+        img.onload = onImageReady.bind(null, img)
+        img.src = event.target.result;
     }
+    reader.readAsDataURL(ev.target.files[0]);
 }
+
 

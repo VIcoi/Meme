@@ -16,9 +16,13 @@
 
 <body onload="init()">
     <h1>Meme Generator</h1>
+    <input type="file" name="image" onchange="onFileInputChange(event)" />
+    
+  
     <div>
-        <input oninput="onInputChange()" class="userText" type="text" placeholder="write a text">
-        <button onclick="onTextSubmit()">Submit</button>
+        <input oninput="inputChange()" class="userText" type="text" placeholder="write a text">
+        <input oninput="inputChange()" class="userText2" type="text" placeholder="write a text">
+        <input class="color" type="color" value="#00ffff" name="color" form="frmRegister">
     </div>
     <br>
     <canvas id="my-canvas" width="500" height="500">
@@ -28,6 +32,7 @@
 
         <img onclick="ondrawImg(this)" src="/img/003.jpg" alt="">
     </div>
+    <div class="share-container"></div>
 
     <script src="/js/service.js"></script>
     <script src="/js/controller.js"></script>
