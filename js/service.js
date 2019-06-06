@@ -1,8 +1,8 @@
 'use strict'
 
 function drawImg(img) {
-    canvas.width = img.clientHeight;
-    canvas.height = img.clientHeight;
+    canvas.width = img.width;
+    canvas.height = img.height;
     ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
 }
 
