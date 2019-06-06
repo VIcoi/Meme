@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,12 +13,18 @@
         }
     </style>
 </head>
+
 <body onload="init()">
     <h1>Meme Generator</h1>
-    <canvas onclick="checkCeleb(event)" id="my-canvas" width="500" height="500">
+    <div>
+        <input oninput="onInputChange()" class="userText" type="text" placeholder="write a text">
+        <button onclick="onTextSubmit()">Submit</button>
+    </div>
+    <br>
+    <canvas id="my-canvas" width="500" height="500">
     </canvas>
     <h2>Gallery</h2>
-    <div class="gallery">
+    <div class="gallery grid-container">
 
         <img onclick="ondrawImg(this)" src="/img/003.jpg" alt="">
     </div>
@@ -25,4 +32,5 @@
     <script src="/js/service.js"></script>
     <script src="/js/controller.js"></script>
 </body>
+
 </html>
