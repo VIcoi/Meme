@@ -12,10 +12,10 @@
         }
     </style>
 </head>
-<body>
+<body onload="init()">
     <h1>Meme Generator</h1>
-    <canvas onclick="checkCeleb(event)" id="my-canvas" width="500" height="400">
+    <canvas onclick="checkCeleb(event)" id="my-canvas" width="500" height="500" aria-placeholder="pick a pic">
     </canvas>
-
+    <script src="/js/controller.js"></script>
 </body>
 </html>
