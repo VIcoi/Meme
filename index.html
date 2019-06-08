@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Meme Generator</title>
+    <link rel="stylesheet" href="css/main.css">
     <style>
         #my-canvas {
             border: 1px solid blue;
@@ -15,23 +16,30 @@
 </head>
 
 <body onload="init()">
-    <h1>Meme Generator</h1>
-    <input type="file" name="image" onchange="onFileInputChange(event)" />
-    
-  
-    <div>
-        <input oninput="inputChange()" class="userText" type="text" placeholder="write a text">
-        <input oninput="inputChange()" class="userText2" type="text" placeholder="write a text">
-        <input class="color" type="color" value="#00ffff" name="color" form="frmRegister" oninput="inputChange()">
+    <div class="justify-center align-center flex flex-d">
+        <h1>Meme Generator</h1>
+        <input type="file" name="image" onchange="onFileInputChange(event)" />
+
+
+        <div>
+            <input oninput="inputChange()" class="userText" type="text" placeholder="write a text">
+            <input oninput="inputChange()" class="userText2" type="text" placeholder="write a text">
+            <input class="color" type="color" value="#00ffff" name="color" form="frmRegister" oninput="inputChange()">
+        </div>
+        <br>
+        <canvas id="my-canvas" width="500" height="500">
+        </canvas>
     </div>
-    <br>
-    <canvas id="my-canvas" width="500" height="500">
-    </canvas>
     <h2>Gallery</h2>
     <div class="gallery grid-container">
 
-        <img onclick="ondrawImg(this)" src="./img/003.jpg" alt="">
-    </div>
+            <img onclick="ondrawImg(this)" src="./img/1.jpg">
+            <img onclick="ondrawImg(this)" src="./img/2.jpg">
+            <img onclick="ondrawImg(this)" src="./img/3.jpg">
+            <img onclick="ondrawImg(this)" src="./img/4.jpg">
+            <img onclick="ondrawImg(this)" src="./img/5.jpg">
+            <img onclick="ondrawImg(this)" src="./img/6.jpg">
+        </div>
     <div class="share-container"></div>
 
     <script src="./js/service.js"></script>

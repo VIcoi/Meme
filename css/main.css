@@ -1,6 +1,7 @@
 
-
-
+body{
+    background-image: url('../img/beck.jpg')
+}
 
 
 
@@ -20,6 +21,10 @@ img{
 
 .flex {
     display: flex; }
+
+.flex-d{
+    flex-direction: column;
+}
 
 .justify-center {
 justify-content: center; }
