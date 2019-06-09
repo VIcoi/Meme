@@ -29,9 +29,8 @@ function inputChange() {
     if (gImg) {
         drawImg(gImg);
         var selectedFont = document.querySelector('#font').value;
-        console.log(selectedFont);
-        
         var elColor = document.querySelector('.color').value;
+        
         if (document.querySelector('.userText').value !== '') {
             const txt = document.querySelector('.userText').value;
             const offsetX = canvas.width / 4;
@@ -69,6 +68,10 @@ function textSizeChange(keyWord) {
     inputChange();
 }
 
+function downloadImg(elLink) {
+    var imgContent = canvas.toDataURL('image/jpeg');
+    elLink.href = imgContent
+}
 
 function onFileInputChange(ev) {
     handleImageFromInput(ev, drawImg)
