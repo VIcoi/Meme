@@ -1,23 +1,23 @@
 'use strict'
-
-
-
+let startX;
+let mouseDown;
+let startY;
+let texts;
 let canvas;
 let ctx;
 let offsetX;
 let offsetY;
-let textS = 27;
-
-// let currElement = 'arc'
-
-// function changeEl(elName) {
-//     currElement = elName
-// }
+let textSize;
+let selectedText;
 
 function init() {
     canvas = document.querySelector('#my-canvas');
     ctx = canvas.getContext('2d');
     // clearCanvas()
+    textSize = 27;
+    texts = [];
+    selectedText = -1;
+    mouseDown = false;
 }
 
 
@@ -26,31 +26,35 @@ function ondrawImg(img) {
 }
 
 function inputChange() {
+    if (selectedText < 0) {
+        // create new line of text
+        const offsetX = canvas.width / 4;
+        const offsetY = 50;
+        const txtObj = { x: offsetX, y: offsetY, fontSize: textSize };
+        texts.push(txtObj);
+        selectedText = texts.length - 1;
+    }
+    var selectedFont = document.querySelector('#font').value;
+    var elColor = document.querySelector('.color').value;
+    const txt = document.querySelector('.userText').value;
+    texts[selectedText].text = txt;
+    texts[selectedText].fontColor = elColor;
+    texts[selectedText].fontFamily = selectedFont;
+    drowCanvas();
+}
+
+function drowCanvas() {
     if (gImg) {
         drawImg(gImg);
-        var selectedFont = document.querySelector('#font').value;
-        var elColor = document.querySelector('.color').value;
-        
+        texts.forEach(txtObj => {
+            ctx.fillStyle = txtObj.fontColor;
+            ctx.strokeStyle = 'black';
+            ctx.font = txtObj.fontSize + "px " + txtObj.fontFamily;
+            ctx.fillText(txtObj.text, txtObj.x, txtObj.y);
+            ctx.strokeText(txtObj.text, txtObj.x, txtObj.y);
+
+        });
         if (document.querySelector('.userText').value !== '') {
-            const txt = document.querySelector('.userText').value;
-            const offsetX = canvas.width / 4;
-            const offsetY = 50;
-            ctx.fillStyle = elColor;
-            ctx.strokeStyle = 'black';
-            ctx.font = textS + "px " + selectedFont;
-            ctx.fillText(txt, offsetX, offsetY);
-            ctx.strokeText(txt, offsetX, offsetY);
-        }
-        /////
-        if (document.querySelector('.userText2').value !== '') {
-            const txt = document.querySelector('.userText2').value;
-            const offsetX2 = canvas.width / 4;
-            const offsetY2 = canvas.height - 50;
-            ctx.fillStyle = elColor;
-            ctx.strokeStyle = 'black';
-            ctx.font = textS + "px " + selectedFont;
-            ctx.fillText(txt, offsetX2, offsetY2);
-            ctx.strokeText(txt, offsetX2, offsetY2);
         }
     } else {
         alert('Please select piture')
@@ -60,12 +64,14 @@ function inputChange() {
 }
 
 function textSizeChange(keyWord) {
-    if (keyWord === 'up') {
-        ++textS;
-    } else {
-        --textS;
+    if (selectedText >= 0) {
+        if (keyWord === 'up') {
+            texts[selectedText].fontSize++;
+        } else {
+            texts[selectedText].fontSize--;
+        }
+        drowCanvas();
     }
-    inputChange();
 }
 
 function downloadImg(elLink) {
@@ -77,6 +83,52 @@ function onFileInputChange(ev) {
     handleImageFromInput(ev, drawImg)
 }
 
+function handleMouseDown(e) {
+    debugger
+    e.preventDefault();
+    startX = parseInt(e.clientX - canvas.offsetX);
+    startY = parseInt(e.clientY - canvas.offsetY);
+    // Put your mousedown stuff here
+    for (var i = 0; i < texts.length; i++) {
+        if (textHittest(startX, startY, i)) {
+            mouseDown = true;
+            selectedText = i;
+        }
+    }
+}
+
+// test if x,y is inside the bounding box of texts[textIndex]
+function textHittest(x, y, textIndex) {
+    var text = texts[textIndex];
+    return (x >= text.x &&
+        x <= text.x + text.width &&
+        y >= text.y - text.height &&
+        y <= text.y);
+}
+
+function handleMouseMove(e) {
+    if (selectedText < 0 || !mouseDown) { return; }
+    e.preventDefault();
+    const mouseX = parseInt(e.clientX - canvas.offsetX);
+    const mouseY = parseInt(e.clientY - canvas.offsetY);
+
+    // Put your mousemove stuff here
+    var dx = mouseX - startX;
+    var dy = mouseY - startY;
+    startX = mouseX;
+    startY = mouseY;
+
+    var text = texts[selectedText];
+    text.x += dx;
+    text.y += dy;
+    drowCanvas();
+}
+
+function handleMouseUp(e) {
+    e.preventDefault();
+    selectedText = -1;
+    mouseDown = false;
+}
 
 function renderGallery() {
     //get all pics and render with on click to the class .gallery

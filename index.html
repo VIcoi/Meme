@@ -34,12 +34,12 @@
         <div>
             <i onclick="textSizeChange('up')" class="fas fa-plus"></i>
             <i onclick="textSizeChange('down')" class="fas fa-minus"></i>
-            <input oninput="inputChange()" class="userText" type="text" placeholder="write a text">
-            <input oninput="inputChange()" class="userText2" type="text" placeholder="write a text">
+            <input oninput="inputChange()" class="userText" type="text" placeholder="Text for Header">
+            <input oninput="inputChange()" class="userText2" type="text" placeholder="Text for Footer">
             <input class="color" type="color" value="#00ffff" name="color" form="frmRegister" oninput="inputChange()">
         </div>
         <br>
-        <canvas id="my-canvas" width="400" height="500">
+        <canvas id="my-canvas" width="400" height="400" onmousedown="handleMouseDown(event)" onmousemove="handleMouseMove(event)" onmouseup="handleMouseUp(event)">
         </canvas>
         <a href="#" onclick="downloadImg(this)" download="my-img.jpg">
             Download as jpeg
