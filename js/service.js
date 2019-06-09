@@ -4,16 +4,12 @@ let gImg;
 
 
 function drawImg(img) {
-   
     gImg = img;
-    if (canvas.width < img.width) {
-        canvas.width = img.width/1.5;
-        canvas.height = img.height/1.5;  
-    }else if (250 < img.width) {
-        canvas.width = img.width*1.5;
-        canvas.height = img.height*1.5;  
-    }
-    ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+    const img1 = new Image();
+    img1.src = img.src;
+    canvas.width = window.innerWidth * 0.8;
+    canvas.height = (img1.height*canvas.width)/img1.width;  
+    ctx.drawImage(img1, 0, 0, canvas.width, canvas.height)
 }
 
 
@@ -29,4 +25,6 @@ function handleImageFromInput(ev, onImageReady) {
     reader.readAsDataURL(ev.target.files[0]);
 }
 
-
+function createPic(params) {
+    
+}

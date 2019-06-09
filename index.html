@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Meme Generator</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="css/main.css">
     <style>
         #my-canvas {
@@ -16,30 +18,40 @@
 </head>
 
 <body onload="init()">
+    <!-- make sure the fonts are loaded -->
+    <div style="font-family: Impact; left: -20px;position: relative;">.</div>
+    <div style="font-family: Arial; left: -20px;position: relative;">.</div>
+    <div style="font-family: PlayFair; left: -20px;position: relative;">.</div>
     <div class="justify-center align-center flex flex-d">
         <h1>Meme Generator</h1>
         <input type="file" name="image" onchange="onFileInputChange(event)" />
-
+        <select onchange="inputChange()" name="font" id="font">
+            <option value="Impact">Impact</option>
+            <option value="Arial">Arial</option>
+            <option value="Playfair">Playfair</option>
+        </select>
 
         <div>
+            <i onclick="textSizeChange('up')" class="fas fa-plus"></i>
+            <i onclick="textSizeChange('down')" class="fas fa-minus"></i>
             <input oninput="inputChange()" class="userText" type="text" placeholder="write a text">
             <input oninput="inputChange()" class="userText2" type="text" placeholder="write a text">
             <input class="color" type="color" value="#00ffff" name="color" form="frmRegister" oninput="inputChange()">
         </div>
         <br>
-        <canvas id="my-canvas" width="500" height="500">
+        <canvas id="my-canvas" width="400" height="500">
         </canvas>
     </div>
     <h2>Gallery</h2>
     <div class="gallery grid-container">
 
-            <img onclick="ondrawImg(this)" src="./img/1.jpg">
-            <img onclick="ondrawImg(this)" src="./img/2.jpg">
-            <img onclick="ondrawImg(this)" src="./img/3.jpg">
-            <img onclick="ondrawImg(this)" src="./img/4.jpg">
-            <img onclick="ondrawImg(this)" src="./img/5.jpg">
-            <img onclick="ondrawImg(this)" src="./img/6.jpg">
-        </div>
+        <img onclick="ondrawImg(this)" src="./img/1.jpg">
+        <img onclick="ondrawImg(this)" src="./img/2.jpg">
+        <img onclick="ondrawImg(this)" src="./img/3.jpg">
+        <img onclick="ondrawImg(this)" src="./img/4.jpg">
+        <img onclick="ondrawImg(this)" src="./img/5.jpg">
+        <img onclick="ondrawImg(this)" src="./img/6.jpg">
+    </div>
     <div class="share-container"></div>
 
     <script src="./js/service.js"></script>

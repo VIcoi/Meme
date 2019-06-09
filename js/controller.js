@@ -6,6 +6,7 @@ let canvas;
 let ctx;
 let offsetX;
 let offsetY;
+let textS = 27;
 
 // let currElement = 'arc'
 
@@ -27,6 +28,9 @@ function ondrawImg(img) {
 function inputChange() {
     if (gImg) {
         drawImg(gImg);
+        var selectedFont = document.querySelector('#font').value;
+        console.log(selectedFont);
+        
         var elColor = document.querySelector('.color').value;
         if (document.querySelector('.userText').value !== '') {
             const txt = document.querySelector('.userText').value;
@@ -34,7 +38,7 @@ function inputChange() {
             const offsetY = 50;
             ctx.fillStyle = elColor;
             ctx.strokeStyle = 'black';
-            ctx.font = "27px Arial";
+            ctx.font = textS + "px " + selectedFont;
             ctx.fillText(txt, offsetX, offsetY);
             ctx.strokeText(txt, offsetX, offsetY);
         }
@@ -45,7 +49,7 @@ function inputChange() {
             const offsetY2 = canvas.height - 50;
             ctx.fillStyle = elColor;
             ctx.strokeStyle = 'black';
-            ctx.font = "27px Arial";
+            ctx.font = textS + "px " + selectedFont;
             ctx.fillText(txt, offsetX2, offsetY2);
             ctx.strokeText(txt, offsetX2, offsetY2);
         }
@@ -56,10 +60,13 @@ function inputChange() {
     }
 }
 
-
-function renderGallery() {
-    //get all pics and render with on click to the class .gallery
-    // like --  <img onclick="ondrawImg(this)" src="/img/003.jpg" alt="">
+function textSizeChange(keyWord) {
+    if (keyWord === 'up') {
+        ++textS;
+    } else {
+        --textS;
+    }
+    inputChange();
 }
 
 
@@ -68,23 +75,11 @@ function onFileInputChange(ev) {
 }
 
 
-// function draw(ev) {
-//     ctx.save();
-//     drawImg();
-//     // const { offsetX, offsetY } = ev
-//     // switch (currElement) {
-//     //     case 'triangle':
-//     //         drawTriangle(offsetX, offsetY)
-//     //         break;
-//     //     case 'rect':
-//     //         drawRect(offsetX, offsetY)
-//     //         break;
-//     //     case 'text':
-//     //         drawText('test', offsetX, offsetY)
-//     //         break;
-//     //     case 'arc':
-//     //         drawArc(offsetX, offsetY)
-//     //         break;
-//     // }
-//     ctx.restore()
-// }
+function renderGallery() {
+    //get all pics and render with on click to the class .gallery
+    // like --  <img onclick="ondrawImg(this)" src="/img/003.jpg" alt="">
+
+}
+
+
+

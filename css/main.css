@@ -1,11 +1,18 @@
 
+
+@font-face {
+    font-family: Playfair;
+    src: url('../fonts/PlayfairDisplay-Regular.otf');
+}
+
+@font-face {
+    font-family: Impact;
+    src: url('../fonts/impact.ttf');
+}
+
 body{
     background-image: url('../img/beck.jpg')
 }
-
-
-
-
 
 
 
