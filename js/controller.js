@@ -36,6 +36,7 @@ function inputChange() {
     var selectedFont = document.querySelector('#font').value;
     var elColor = document.querySelector('.color').value;
     const txt = document.querySelector('.userText').value;
+    texts[selectedText].width = ctx.measureText(txt).width;
     texts[selectedText].text = txt;
     texts[selectedText].fontColor = elColor;
     texts[selectedText].fontFamily = selectedFont;
@@ -100,7 +101,7 @@ function textHittest(x, y, textIndex) {
     var text = texts[textIndex];
     return (x >= text.x &&
         x <= text.x + text.width &&
-        y >= text.y - text.height &&
+        y >= text.y - text.fontSize &&
         y <= text.y);
 }
 
@@ -111,8 +112,10 @@ function handleMouseMove(e) {
     // debugger
     if (selectedText < 0 || !mouseDown) { return; }
     e.preventDefault();
-    const mouseX = parseInt(e.clientX - canvas.offsetLeft);
-    const mouseY = parseInt(e.clientY - canvas.offsetTop);
+    // const mouseX = parseInt(e.clientX - canvas.offsetLeft);
+    // const mouseY = parseInt(e.clientY - canvas.offsetTop);
+    const mouseX = e.offsetX;
+    const mouseY = e.offsetY;
 
     // Put your mousemove stuff here
     var dx = mouseX - startX;
@@ -128,7 +131,6 @@ function handleMouseMove(e) {
 
 function handleMouseUp(e) {
     e.preventDefault();
-    selectedText = -1;
     mouseDown = false;
 }
 
