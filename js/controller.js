@@ -5,8 +5,6 @@ let startY;
 let texts;
 let canvas;
 let ctx;
-let offsetX;
-let offsetY;
 let textSize;
 let selectedText;
 
@@ -25,12 +23,13 @@ function ondrawImg(img) {
     drawImg(img);
 }
 
+
 function inputChange() {
     if (selectedText < 0) {
         // create new line of text
-        const offsetX = canvas.width / 4;
-        const offsetY = 50;
-        const txtObj = { x: offsetX, y: offsetY, fontSize: textSize };
+        const txtOffsetX = canvas.width / 4;
+        const txtOffsetY = 50;
+        const txtObj = { x: txtOffsetX, y: txtOffsetY, fontSize: textSize };
         texts.push(txtObj);
         selectedText = texts.length - 1;
     }
@@ -84,10 +83,9 @@ function onFileInputChange(ev) {
 }
 
 function handleMouseDown(e) {
-    debugger
     e.preventDefault();
-    startX = parseInt(e.clientX - canvas.offsetX);
-    startY = parseInt(e.clientY - canvas.offsetY);
+    startX = parseInt(e.clientX - canvas.offsetLeft);
+    startY = parseInt(e.clientY - canvas.offsetTop);
     // Put your mousedown stuff here
     for (var i = 0; i < texts.length; i++) {
         if (textHittest(startX, startY, i)) {
@@ -107,10 +105,14 @@ function textHittest(x, y, textIndex) {
 }
 
 function handleMouseMove(e) {
+    console.log(selectedText);
+    console.log(mouseDown);
+
+    // debugger
     if (selectedText < 0 || !mouseDown) { return; }
     e.preventDefault();
-    const mouseX = parseInt(e.clientX - canvas.offsetX);
-    const mouseY = parseInt(e.clientY - canvas.offsetY);
+    const mouseX = parseInt(e.clientX - canvas.offsetLeft);
+    const mouseY = parseInt(e.clientY - canvas.offsetTop);
 
     // Put your mousemove stuff here
     var dx = mouseX - startX;
