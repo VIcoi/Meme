@@ -28,7 +28,6 @@ function onNextLine() {
     selectedText = -1;
     document.querySelector('.userText').value = '';
     document.querySelector('.fontPx').innerHTML = 27;
-
 }
 
 function inputChange() {
@@ -102,6 +101,8 @@ function handleMouseDown(e) {
             selectedText = i;
             document.querySelector('.userText').value = texts[selectedText].text;
             document.querySelector('.fontPx').innerHTML = texts[selectedText].fontSize;
+            document.querySelector('#font').value = texts[selectedText].fontFamily;
+            document.querySelector('#color').value = texts[selectedText].fontColor;
 
         }
     }
