@@ -25,23 +25,41 @@
     <div class="justify-center align-center flex flex-d">
         <h1>Meme Generator</h1>
         <input type="file" name="image" onchange="onFileInputChange(event)" />
-        <select onchange="inputChange()" name="font" id="font">
-            <option value="Impact">Impact</option>
-            <option value="Arial">Arial</option>
-            <option value="Playfair">Playfair</option>
-        </select>
 
-        <div>
-            <i onclick="textSizeChange('up')" class="fas fa-plus"></i>
-            <i onclick="textSizeChange('down')" class="fas fa-minus"></i>
+        <div class="textDiv">
+            <label for="text">Text: </label>
             <input oninput="inputChange()" class="userText" type="text" placeholder="Text for Header">
-            <!-- <input oninput="inputChange()" class="userText2" type="text" placeholder="Text for Footer"> -->
-            <input class="color" type="color" value="#00ffff" name="color" form="frmRegister" oninput="inputChange()">
+        </div>
+        <div class="flex justify-center align-center space-between toolBar">
+            <div class="flex justify-center align-center space-between">
+                <label for="text">Font Size:</label>
+                <i onclick="textSizeChange('down')" class="fas fa-minus"></i>
+                <span class="fontPx">27</span>
+                <i onclick="textSizeChange('up')" class="fas fa-plus"></i>
+            </div>
+            <div>
+                <label for="text">Color:</label>
+                <input class="color" type="color" value="#00ffff" name="color" form="frmRegister"
+                    oninput="inputChange()">
+            </div>
+            <div>
+                <label for="selecte">Font Type:</label>
+                <select onchange="inputChange()" name="font" id="font">
+                    <option value="Impact">Impact</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Playfair">Playfair</option>
+                </select>
+            </div>
+            <div class="flex justify-center align-center">
+                <label for="text">Click fo next line:</label>
+                <i onclick="onNextLine()" class="fab fa-line"></i>
+            </div>
         </div>
         <br>
-        <canvas id="my-canvas" width="400" height="400" onmousedown="handleMouseDown(event)" onmousemove="handleMouseMove(event)" onmouseup="handleMouseUp(event)">
+        <canvas id="my-canvas" onmousedown="handleMouseDown(event)" onmousemove="handleMouseMove(event)"
+            onmouseup="handleMouseUp(event)">
         </canvas>
-        <a href="#" onclick="downloadImg(this)" download="my-img.jpg">
+        <a class="donwload" href="#" onclick="downloadImg(this)" download="my-img.jpg">
             Download as jpeg
         </a>
     </div>

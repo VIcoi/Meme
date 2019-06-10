@@ -16,6 +16,7 @@ function init() {
     texts = [];
     selectedText = -1;
     mouseDown = false;
+    
 }
 
 
@@ -23,6 +24,12 @@ function ondrawImg(img) {
     drawImg(img);
 }
 
+function onNextLine() {
+    selectedText = -1;
+    document.querySelector('.userText').value = '';
+    document.querySelector('.fontPx').innerHTML = 27;
+
+}
 
 function inputChange() {
     if (selectedText < 0) {
@@ -59,7 +66,6 @@ function drowCanvas() {
     } else {
         alert('Please select piture')
         document.querySelector('.userText').value = '';
-        document.querySelector('.userText2').value = '';
     }
 }
 
@@ -70,6 +76,8 @@ function textSizeChange(keyWord) {
         } else {
             texts[selectedText].fontSize--;
         }
+    document.querySelector('.fontPx').innerHTML = texts[selectedText].fontSize;
+
         drowCanvas();
     }
 }
@@ -85,13 +93,16 @@ function onFileInputChange(ev) {
 
 function handleMouseDown(e) {
     e.preventDefault();
-    startX = parseInt(e.clientX - canvas.offsetLeft);
-    startY = parseInt(e.clientY - canvas.offsetTop);
+    startX = e.offsetX;
+    startY = e.offsetY;
     // Put your mousedown stuff here
     for (var i = 0; i < texts.length; i++) {
         if (textHittest(startX, startY, i)) {
             mouseDown = true;
             selectedText = i;
+            document.querySelector('.userText').value = texts[selectedText].text;
+            document.querySelector('.fontPx').innerHTML = texts[selectedText].fontSize;
+
         }
     }
 }
@@ -106,8 +117,6 @@ function textHittest(x, y, textIndex) {
 }
 
 function handleMouseMove(e) {
-    console.log(selectedText);
-    console.log(mouseDown);
 
     // debugger
     if (selectedText < 0 || !mouseDown) { return; }
